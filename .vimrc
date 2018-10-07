@@ -3,6 +3,7 @@ set shiftwidth=4
 set tabstop=4
 set expandtab
 set number
+set noswapfile
 set selection=exclusive
 set autoindent
 set autoread
@@ -61,6 +62,21 @@ let g:user_emmet_leader_key='<C-C>'
 " YouCompleteMe plugin
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_seed_identifiers_with_syntax=1
+let g:ycm_complete_in_comments=1
+let g:ycm_collect_identifiers_from_tags_files=1
+let g:ycm_min_num_of_chars_for_completion=1
+let g:ycm_complete_in_strings = 1
+let g:ycm_filetype_blacklist = {
+      \ 'tagbar' : 1,
+      \ 'nerdtree' : 1,
+\}
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_cache_omnifunc=0
+let g:ycm_server_keep_logfiles = 1
 
 " DelimitMate plugin
 let delimitMate_expand_space = 1
@@ -93,6 +109,10 @@ let g:go_list_type='quickfix'
 let g:syntastic_go_checkers = ['go', 'gofmt', 'golint', 'govet']
 let g:syntastic_ignore_files = ['\.s$']
 let g:syntastic_always_populate_loc_list = 1
+
+" sync
+" let g:sync_exe_filenames = '.sync;'
+" nmap <C-U> <ESC>:call SyncUploadFile()<CR>
 
 " Exit if quickfix is last window
 au BufEnter * call MyLastWindow()
@@ -169,3 +189,6 @@ au FileType go nmap <leader>dt <Plug>(go-def-tab)
 au FileType go nmap <leader>gb <Plug>(go-doc-browser)
 au FileType go nmap <leader>gs <Plug>(go-doc-split)
 au FileType go nmap <leader>gv <Plug>(go-doc-vertical)
+
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
