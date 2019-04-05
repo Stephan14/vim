@@ -13,6 +13,53 @@ set relativenumber
 set nrformats-=octal
 set backspace=2
 
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" 启用vundle来管理vim插件
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" 安装插件写在这之后
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'fatih/vim-go'
+Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-fugitive'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'sjl/gundo.vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'Raimondi/delimitMate'
+Plugin 'szw/vim-maximizer'
+Plugin 'godlygeek/tabular'
+Plugin 'SirVer/ultisnips'
+Plugin 'suan/vim-instant-markdown'
+Plugin 'kien/ctrlp.vim'
+Plugin 'rking/ag.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'nelstrom/vim-qargs'
+Plugin 'dkprice/vim-easygrep'
+Plugin 'rhysd/vim-grammarous'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'terryma/vim-multiple-cursors'
+
+" 安装插件写在这之前
+call vundle#end()            " required
+filetype plugin on    " required
+
+" 常用命令
+" :PluginList       - 查看已经安装的插件
+" :PluginInstall    - 安装插件
+" :PluginUpdate     - 更新插件
+" :PluginSearch     - 搜索插件，例如 :PluginSearch xml就能搜到xml相关的插件
+" :PluginClean      - 删除插件，把安装插件对应行删除，然后执行这个命令即可
+
 " Closetag script
 autocmd Filetype html let g:closetag_html_style=1
 autocmd Filetype html,xml,xsl source ~/.vim/scripts/closetag.vim
@@ -23,8 +70,9 @@ au BufEnter * set scrolloff=30
 au VimLeave * !echo -ne "\033[0m"
 
 " Pathogen
-execute pathogen#infect()
-filetype plugin indent on
+" execute pathogen#infect()
+" syntax on
+" filetype plugin indent on
 
 " Syntax highlighting
 syntax enable
@@ -163,6 +211,9 @@ nmap <leader>aa :Ag <C-r><C-w><CR>
 
 " git-blame
 nmap <Leader>bl :Gblame <CR>
+
+" guru
+nmap <Leader>gc :GoCallers <CR>
 " Easy Align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
@@ -192,3 +243,4 @@ au FileType go nmap <leader>gv <Plug>(go-doc-vertical)
 
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
