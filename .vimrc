@@ -48,6 +48,7 @@ Plugin 'dkprice/vim-easygrep'
 Plugin 'rhysd/vim-grammarous'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'mileszs/ack.vim'
 
 " 安装插件写在这之前
 call vundle#end()            " required
@@ -176,7 +177,8 @@ endfunction
 
 " Shortcuts remap
 nmap  <F2>          :tabnew<CR>
-nmap  <F4>          :set hlsearch<CR>
+" 搜索函数名、变量
+nmap  <F4>          :Ack<CR>
 nmap  <F5>          :nohlsearch<CR>
 nmap  <F6>          :NERDTreeTabsToggle<CR>
 nmap  <F7>          :GundoToggle<CR>
