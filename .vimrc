@@ -24,30 +24,44 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+" go语言
 Plugin 'fatih/vim-go'
+" 文件大纲
 Plugin 'majutsushi/tagbar'
+" git操作
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+" 状态栏
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+" 目录树
 Plugin 'scrooloose/nerdtree'
+" 目录树加强功能
 Plugin 'jistr/vim-nerdtree-tabs'
+" 语法检查
 Plugin 'vim-syntastic/syntastic'
+" 空白凸显
 Plugin 'ntpeters/vim-better-whitespace'
+" 时光机
 Plugin 'sjl/gundo.vim'
-Plugin 'mattn/emmet-vim'
+" 符号自动补全
 Plugin 'Raimondi/delimitMate'
-Plugin 'szw/vim-maximizer'
+" 文本对齐
 Plugin 'godlygeek/tabular'
+" 重复代码管理
 Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
 Plugin 'suan/vim-instant-markdown'
-Plugin 'kien/ctrlp.vim'
-Plugin 'rking/ag.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'nelstrom/vim-qargs'
+" grep命令
 Plugin 'dkprice/vim-easygrep'
+" 语法检查器
 Plugin 'rhysd/vim-grammarous'
+" 快速对齐
 Plugin 'junegunn/vim-easy-align'
+" 多光标操作
 Plugin 'terryma/vim-multiple-cursors'
+" 字符串搜索
 Plugin 'mileszs/ack.vim'
 
 " 安装插件写在这之前
@@ -81,9 +95,6 @@ colorscheme molokai
 
 " Easygrep
 let g:EasyGrepRecursive=1
-
-" Ag
-let g:ag_working_path_mode="r"
 
 " Grammarous
 let g:grammarous#default_comments_only_filetypes = {
@@ -208,11 +219,11 @@ nmap § <Plug>(grammarous-move-to-previous-error)
 
 " Search
 nmap <leader><leader>s :%s/<C-r><C-w>/
-nmap <leader><leader>a :Ag<space>
-nmap <leader>aa :Ag <C-r><C-w><CR>
 
 " git-blame
-nmap <Leader>bl :Gblame <CR>
+nmap <Leader>bl :Gblame<CR>
+nmap <Leader>st :Gstatus<CR>
+nmap <Leader>di :Gvdiff<CR>
 
 " guru
 nmap <Leader>gc :GoCallers <CR>
