@@ -12,7 +12,7 @@ set nocompatible
 set relativenumber
 set nrformats-=octal
 set backspace=2
-
+set tags=./.tags;,.tags
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
