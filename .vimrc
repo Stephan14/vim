@@ -65,6 +65,10 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'mileszs/ack.vim'
 " 自动索引
 Plugin 'ludovicchabant/vim-gutentags'
+" 快速跳转
+Plugin 'Lokaltog/vim-easymotion'
+" 自动提示
+Plugin 'Valloric/YouCompleteMe'
 
 " 安装插件写在这之前
 call vundle#end()            " required
