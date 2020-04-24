@@ -12,6 +12,7 @@ set nocompatible
 set relativenumber
 set nrformats-=octal
 set backspace=2
+set shellpipe=>
 set tags=./.tags;,.tags
 
 set nocompatible              " be iMproved, required
@@ -69,6 +70,8 @@ Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'Lokaltog/vim-easymotion'
 " 自动提示
 Plugin 'Valloric/YouCompleteMe'
+" go 自动补全
+Plugin 'Blackrush/vim-gocode'
 
 " 安装插件写在这之前
 call vundle#end()            " required
@@ -200,7 +203,7 @@ endfunction
 " Shortcuts remap
 nmap  <F2>          :tabnew<CR>
 " 搜索函数名、变量
-nmap  <F4>          :Ack<CR>
+nmap  <F4>          :Ack!<Space><CR>
 nmap  <F5>          :nohlsearch<CR>
 nmap  <F6>          :NERDTreeTabsToggle<CR>
 nmap  <F7>          :GundoToggle<CR>
@@ -230,6 +233,7 @@ nmap § <Plug>(grammarous-move-to-previous-error)
 
 " Search
 nmap <leader><leader>s :%s/<C-r><C-w>/
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " git-blame
 nmap <Leader>bl :Gblame<CR>
@@ -243,29 +247,32 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " Go-Specific
-au FileType go nmap gi <Plug>(go-install)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-au FileType go nmap <leader>e <Plug>(go-rename)
-au FileType go nmap <leader>i <Plug>(go-info)
-au FileType go nmap <leader>l :GoLint<CR>
-au FileType go nmap <leader>q :GoImport<space>
-au FileType go nmap <Leader>f <Plug>:GoImpl<space>
-au FileType go nmap <leader>ff <Plug>(go-implements)
-au FileType go vmap <leader>r :GoAddTags<space>
-au FileType go vmap <leader>p :GoPlay<CR>
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>s <Plug>(go-install)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>v <Plug>(go-vet)
-au FileType go nmap <leader>ds <Plug>(go-def-split)
-au FileType go nmap <leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <leader>dt <Plug>(go-def-tab)
-au FileType go nmap <leader>gb <Plug>(go-doc-browser)
-au FileType go nmap <leader>gs <Plug>(go-doc-split)
-au FileType go nmap <leader>gv <Plug>(go-doc-vertical)
+"au FileType go nmap gi <Plug>(go-install)
+"au FileType go nmap <leader>b <Plug>(go-build)
+"au FileType go nmap <leader>c <Plug>(go-coverage)
+"au FileType go nmap <leader>e <Plug>(go-rename)
+"au FileType go nmap <leader>i <Plug>(go-info)
+"au FileType go nmap <leader>l :GoLint<CR>
+"au FileType go nmap <leader>q :GoImport<space>
+"au FileType go nmap <Leader>f <Plug>:GoImpl<space>
+"au FileType go nmap <leader>ff <Plug>(go-implements)
+"au FileType go vmap <leader>r :GoAddTags<space>
+"au FileType go vmap <leader>p :GoPlay<CR>
+"au FileType go nmap <leader>r <Plug>(go-run)
+"au FileType go nmap <leader>s <Plug>(go-install)
+"au FileType go nmap <leader>t <Plug>(go-test)
+"au FileType go nmap <leader>v <Plug>(go-vet)
+"au FileType go nmap <leader>ds <Plug>(go-def-split)
+"au FileType go nmap <leader>dv <Plug>(go-def-vertical)
+"au FileType go nmap <leader>dt <Plug>(go-def-tab)
+"au FileType go nmap <leader>gb <Plug>(go-doc-browser)
+"au FileType go nmap <leader>gs <Plug>(go-doc-split)
+"au FileType go nmap <leader>gv <Plug>(go-doc-vertical)
 
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep --nogroup --column'
+endif
+
 
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 
