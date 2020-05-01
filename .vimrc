@@ -72,6 +72,8 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'Valloric/YouCompleteMe'
 " go 自动补全
 Plugin 'Blackrush/vim-gocode'
+" 声场YCM配置文件
+Plugin 'rdnetto/YCM-Generator'
 
 " 安装插件写在这之前
 call vundle#end()            " required
