@@ -13,6 +13,7 @@ set relativenumber
 set nrformats-=octal
 set backspace=2
 set shellpipe=>
+set foldmethod=indent
 set tags=./.tags;,.tags
 
 set nocompatible              " be iMproved, required
