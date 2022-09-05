@@ -15,6 +15,7 @@ set backspace=2
 set shellpipe=>
 set foldmethod=indent
 set tags=./.tags;,.tags
+set clipboard=unnamed
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
