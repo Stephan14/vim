@@ -26,6 +26,7 @@ call vundle#begin()
 " 安装插件写在这之后
 
 " let Vundle manage Vundle, required
+" 使用ctrl+]或者gd也可跳转，ctrl+t跳回来
 Plugin 'VundleVim/Vundle.vim'
 " go语言
 Plugin 'fatih/vim-go'
