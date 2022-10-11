@@ -102,8 +102,8 @@ def main():
     }[output_format]
 
     # temporary files to hold build logs
-    with tempfile.NamedTemporaryFile(mode="rw") as c_build_log:
-        with tempfile.NamedTemporaryFile(mode="rw") as cxx_build_log:
+    with tempfile.NamedTemporaryFile(mode="r+") as c_build_log:
+        with tempfile.NamedTemporaryFile(mode="r+") as cxx_build_log:
             # perform the actual compilation of flags
             fake_build(project_dir, c_build_log.name, cxx_build_log.name, **args)
             (c_count, c_skip, c_flags) = parse_flags(c_build_log)
@@ -401,7 +401,7 @@ def parse_flags(build_log):
     # Only specify one word size (the largest)
     # (Different sizes are used for different files in the linux kernel.)
     mRegex = re.compile("^-m[0-9]+$")
-    word_flags = list([f for f in flags if isinstance(f, basestring) and mRegex.match(f)])
+    word_flags = list([f for f in flags if isinstance(f, str) and mRegex.match(f)])
 
     if(len(word_flags) > 1):
         for flag in word_flags:
@@ -410,14 +410,14 @@ def parse_flags(build_log):
         flags.add(max(word_flags))
 
     # Resolve duplicate macro definitions (always choose the last value for consistency)
-    for name, values in define_flags.iteritems():
+    for name, values in define_flags.items():
         if(len(values) > 1):
             print("WARNING: {} distinct definitions of macro {} found".format(len(values), name))
             values.sort()
 
         flags.add("-D{}={}".format(name, values[0]))
 
-    return (line_count, skip_count, sorted(flags))
+    return (line_count, skip_count, sorted(flags, key=lambda x: str(x)))
 
 
 def generate_cc_conf(flags, config_file):
@@ -428,7 +428,7 @@ def generate_cc_conf(flags, config_file):
 
     with open(config_file, "w") as output:
         for flag in flags:
-            if(isinstance(flag, basestring)):
+            if(isinstance(flag, str)):
                 output.write(flag + "\n")
             else: # is tuple
                 for f in flag:
@@ -451,7 +451,7 @@ def generate_ycm_conf(flags, config_file):
                 if(line == "    # INSERT FLAGS HERE\n"):
                     # insert generated code
                     for flag in flags:
-                        if(isinstance(flag, basestring)):
+                        if(isinstance(flag, str)):
                             output.write("    '{}',\n".format(flag))
                         else: # is tuple
                             output.write("    '{}', '{}',\n".format(*flag))
