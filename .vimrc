@@ -61,8 +61,6 @@ Plugin 'suan/vim-instant-markdown'
 Plugin 'dkprice/vim-easygrep'
 " 语法检查器
 Plugin 'rhysd/vim-grammarous'
-" 快速对齐
-Plugin 'junegunn/vim-easy-align'
 " 多光标操作
 Plugin 'terryma/vim-multiple-cursors'
 " 字符串搜索
@@ -277,9 +275,6 @@ endfunc
 
 " guru
 nmap <Leader>gc :GoCallers <CR>
-" Easy Align
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
 
 " Go-Specific
 "au FileType go nmap gi <Plug>(go-install)
