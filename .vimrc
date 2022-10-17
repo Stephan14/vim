@@ -77,6 +77,8 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'Blackrush/vim-gocode'
 " 声场YCM配置文件
 Plugin 'rdnetto/YCM-Generator'
+" 自动格式化
+Plugin 'vim-autoformat/vim-autoformat'
 
 " 安装插件写在这之前
 call vundle#end()            " required
@@ -245,6 +247,33 @@ nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nmap <Leader>bl :Gblame<CR>
 nmap <Leader>st :Gstatus<CR>
 nmap <Leader>di :Gvdiff<CR>
+
+" 自动格式化
+autocmd FileType c,cpp autocmd BufWritePre * :Autoformat
+nnoremap <leader>ff :call FormatCode("", "file")<CR>
+vnoremap <leader>ff :call FormatCode(visualmode(), "file")<CR>
+nnoremap <leader>fg :call FormatCode("", "Google")<CR>
+vnoremap <leader>fg :call FormatCode(visualmode(), "Google")<CR>
+nnoremap <leader>fc :call FormatCode("", "Chromium")<CR>
+vnoremap <leader>fc :call FormatCode(visualmode(), "Chromium")<CR>
+nnoremap <leader>fl :call FormatCode("", "LLVM")<CR>
+vnoremap <leader>fl :call FormatCode(visualmode(), "LLVM")<CR>
+
+func! FormatCode(exe_mode, style) range
+  if a:exe_mode == ""
+    let firstline_no = 1
+    let lastline_no = line("$")
+  else
+    let firstline_no = a:firstline
+    let lastline_no = a:lastline
+  endif
+  let l:save_formatdef = g:formatdef_clangformat
+  let l:tmpa = join(["clang-format --lines=", firstline_no, ":", lastline_no], "")
+  let g:formatdef_clangformat = "'" . l:tmpa . " --assume-filename=' . bufname('%') . ' -style=" . a:style . "'"
+  let formatcommand = ":Autoformat"
+  exec formatcommand
+  let g:formatdef_clangformat = l:save_formatdef
+endfunc
 
 " guru
 nmap <Leader>gc :GoCallers <CR>
