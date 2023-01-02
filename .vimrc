@@ -13,6 +13,12 @@ set relativenumber
 set nrformats-=octal
 set backspace=2
 set shellpipe=>
+
+" search
+set hlsearch
+set incsearch
+set ignorecase
+
 "set foldmethod=indent
 set tags=./.tags;,.tags
 set clipboard=unnamed
