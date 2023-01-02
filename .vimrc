@@ -6,6 +6,17 @@ set number
 set noswapfile
 set selection=exclusive
 set autoindent
+set smartindent
+set cindent
+set nowrap
+set shiftwidth=4
+set expandtab
+set tabstop=4
+set softtabstop=4
+set nojoinspaces
+set splitright
+set splitbelow
+set pastetoggle=<F12>
 set autoread
 set showcmd
 set nocompatible
@@ -13,11 +24,22 @@ set relativenumber
 set nrformats-=octal
 set backspace=2
 set shellpipe=>
+set mouse=a                 " Automatically enable mouse usage
+set mousehide               " Hide the mouse cursor while typing
 
 " search
 set hlsearch
 set incsearch
 set ignorecase
+
+set shortmess+=filmnrxoOtT
+set viewoptions=folds,options,cursor,unix,slash
+set history=1000
+set spell
+set hidden
+set iskeyword-=.
+set iskeyword-=#
+set iskeyword-=-
 
 "set foldmethod=indent
 set tags=./.tags;,.tags
