@@ -105,6 +105,8 @@ Plugin 'Blackrush/vim-gocode'
 Plugin 'rdnetto/YCM-Generator'
 " 自动格式化
 Plugin 'vim-autoformat/vim-autoformat'
+" 文件搜索
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " 安装插件写在这之前
 call vundle#end()            " required
@@ -361,3 +363,7 @@ map <C-L> <C-W>l<C-W>_
 map <C-H> <C-W>h<C-W>_
 noremap j gj
 noremap k gk
+
+" 文件搜索
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
